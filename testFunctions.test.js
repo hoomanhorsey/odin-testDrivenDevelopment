@@ -64,8 +64,17 @@ test("caesarCipher, 'string' apply shift factor of 1 becomes 'tusjoh'", () => {
   expect(caesarCipher("string", 4)).toBe("wxvmrk");
 });
 
+test("caesarCipher, 'ZZZ' apply shift factor of 1 becomes 'AAA'", () => {
+  expect(caesarCipher("ZZZ", 3)).toBe("CCC");
+});
 test("caesarCipher, 'zzz' apply shift factor of 1 becomes 'aaa'", () => {
   expect(caesarCipher("zzz", 1)).toBe("aaa");
+});
+test("caesarCipher, 'AAA' apply shift factor of -1 becomes 'ZZZ'", () => {
+  expect(caesarCipher("AAA", -1)).toBe("ZZZ");
+});
+test("caesarCipher, 'aaa' apply shift factor of -1 becomes 'zzz'", () => {
+  expect(caesarCipher("aaa", -1)).toBe("zzz");
 });
 
 test("caesarCipher, '9string' apply shift factor of 1 becomes '9tusjoh'", () => {

@@ -66,21 +66,39 @@ function caesarCipher(string, key) {
 
     let pattern = /[a-zA-Z]/;
 
-
-
-    if
-
+    // test char for alpha
     if (pattern.test(array[i])) {
       console.log("is true");
 
-      shiftedArray.push(String.fromCharCode(key + array[i].charCodeAt(0)));
+      // test char for case
+
+      let charCode = array[i].charCodeAt(0);
+
+      if (charCode > 64 && charCode < 91) {
+        // uppercase
+
+        if (charCode + key > 90) {
+          shiftedArray.push(String.fromCharCode(charCode + key - 91 + 65));
+        } else if (charCode + key < 65) {
+          shiftedArray.push(String.fromCharCode(90 - (64 - (charCode + key))));
+        } else {
+          shiftedArray.push(String.fromCharCode(key + charCode));
+        }
+      } else {
+        // lowercase
+
+        if (charCode + key > 122) {
+          shiftedArray.push(String.fromCharCode(charCode + key - 123 + 97));
+        } else if (charCode + key < 97) {
+          shiftedArray.push(String.fromCharCode(122 - (96 - (charCode + key))));
+        } else {
+          shiftedArray.push(String.fromCharCode(key + charCode));
+        }
+      }
     } else {
+      //non alpha char
       shiftedArray.push(array[i]);
     }
-
-    // apply key function(char, key)
-    //    if (char === punctuation, spaces or non-alpha,) then char = char.
-    //    else
   }
   let cipher = shiftedArray.join("");
   console.log(shiftedArray);
