@@ -53,10 +53,25 @@ test("caesarCipher, 'string' apply shift factor of 1 becomes 'tusjoh'", () => {
   expect(caesarCipher("string", 1)).toBe("tusjoh");
 });
 
+test("caesarCipher, 'string' apply shift factor of -1 becomes 'rsqhmf'", () => {
+  expect(caesarCipher("string", -1)).toBe("rsqhmf");
+});
+
+test("caesarCipher, 'string' apply shift factor of 27 becomes 'tusjoh'", () => {
+  expect(caesarCipher("string", 27)).toBe("tusjoh");
+});
+test("caesarCipher, 'string' apply shift factor of 1 becomes 'tusjoh'", () => {
+  expect(caesarCipher("string", 4)).toBe("wxvmrk");
+});
+
+test("caesarCipher, 'zzz' apply shift factor of 1 becomes 'aaa'", () => {
+  expect(caesarCipher("zzz", 1)).toBe("aaa");
+});
+
 test("caesarCipher, '9string' apply shift factor of 1 becomes '9tusjoh'", () => {
   expect(caesarCipher("9string", 1)).toBe("9tusjoh");
 });
 
 test("caesarCipher, '9str !ing' apply shift factor of 1 becomes '9tus !joh'", () => {
-  expect(caesarCipher("9st !ring", 10)).toBe("9tu !sjoh");
+  expect(caesarCipher("9st !ring", 1)).toBe("9tu !sjoh");
 });

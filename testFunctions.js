@@ -52,9 +52,12 @@ function caesarCipher(string, key) {
   // apply key to the letter
   // insert resulting letter into new array
 
-  const array = string.split("");
+  // apply modulo to key if > 26
+  if (key > 26) {
+    key = key % 26;
+  }
 
-  console.log(array);
+  const array = string.split("");
 
   const shiftedArray = [];
 
@@ -62,6 +65,10 @@ function caesarCipher(string, key) {
     console.log(array[i]);
 
     let pattern = /[a-zA-Z]/;
+
+
+
+    if
 
     if (pattern.test(array[i])) {
       console.log("is true");
@@ -80,6 +87,17 @@ function caesarCipher(string, key) {
 
   return cipher;
 }
+
+// A = 65, Z = 90
+// a = 97, z = 122
+
+// Enforcing boundaries
+// if uppercase:
+//  if n < 65,
+//  if n > 90
+// if lowercase
+//  if n < 97
+//  if n > 122
 
 export { sum, capitalize, reverse, calculator, caesarCipher };
 
