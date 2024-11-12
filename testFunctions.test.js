@@ -9,6 +9,7 @@ import {
   reverse,
   calculator,
   caesarCipher,
+  analyzeArray,
 } from "./testFunctions";
 
 test("adds 1 + 2 to equal 3", () => {
@@ -83,4 +84,26 @@ test("caesarCipher, '9string' apply shift factor of 1 becomes '9tusjoh'", () => 
 
 test("caesarCipher, '9str !ing' apply shift factor of 1 becomes '9tus !joh'", () => {
   expect(caesarCipher("9st !ring", 1)).toBe("9tu !sjoh");
+});
+
+test("caesarCipher, 'Hello, World!' apply shift factor of 3 becomes 'Khoor, Zruog!'", () => {
+  expect(caesarCipher("Hello, World!", 3)).toBe("Khoor, Zruog!");
+});
+
+test("analyzeArray , '[1, 8, 3, 4, 2, 6] becomes object 'average': 4,'min': 1,'max': 8,'length': 6,", () => {
+  expect(analyzeArray([1, 8, 3, 4, 2, 6])).toEqual({
+    average: 4,
+    min: 1,
+    max: 8,
+    length: 6,
+  });
+});
+
+test("analyzeArray , '[6, 4, 5, 6, 7, 8, 9, 4, 5, 12, 11] becomes object 'average': 7,'min': 4,'max': 12,'length': 11,", () => {
+  expect(analyzeArray([6, 4, 5, 6, 7, 8, 9, 4, 5, 12, 11])).toEqual({
+    average: 7,
+    min: 4,
+    max: 12,
+    length: 11,
+  });
 });

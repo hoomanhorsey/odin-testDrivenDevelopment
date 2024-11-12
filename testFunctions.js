@@ -106,20 +106,10 @@ function caesarCipher(string, key) {
   return cipher;
 }
 
-// A = 65, Z = 90
-// a = 97, z = 122
+// analyzeArray
 
-// Enforcing boundaries
-// if uppercase:
-//  if n < 65,
-//  if n > 90
-// if lowercase
-//  if n < 97
-//  if n > 122
-
-export { sum, capitalize, reverse, calculator, caesarCipher };
-
-// An analyzeArray function that takes an array of numbers and returns an object with the following properties: average, min, max, and length.
+// An analyzeArray function that takes an array of numbers and returns an object with the
+//following properties: average, min, max, and length.
 
 // const object = analyzeArray([1,8,3,4,2,6]);
 
@@ -129,3 +119,24 @@ export { sum, capitalize, reverse, calculator, caesarCipher };
 //    max: 8,
 //    length: 6
 // };
+
+function analyzeArray(array) {
+  // average of array
+  // min of array/
+  // max of array
+  // length of array
+
+  array.length;
+
+  return {
+    average:
+      array.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue;
+      }, 0) / array.length,
+    min: Math.min(...array),
+    max: Math.max(...array),
+    length: array.length,
+  };
+}
+
+export { sum, capitalize, reverse, calculator, caesarCipher, analyzeArray };
