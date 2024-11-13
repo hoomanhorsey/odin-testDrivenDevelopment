@@ -47,63 +47,65 @@ const calculator = {
 // that your smaller helper functions are doing what they’re supposed to.
 
 function caesarCipher(string, key) {
-  // turn string to an array
-  // loop through each letter of the array
-  // apply key to the letter
-  // insert resulting letter into new array
-
   // apply modulo to key if > 26
-  if (key > 26) {
-    key = key % 26;
-  }
+
+  key = moduloNorm(key);
 
   const array = string.split("");
-
   const shiftedArray = [];
 
   for (let i = 0; i < array.length; i++) {
-    console.log(array[i]);
-
-    let pattern = /[a-zA-Z]/;
-
     // test char for alpha
-    if (pattern.test(array[i])) {
-      console.log("is true");
-
-      // test char for case
-
-      let charCode = array[i].charCodeAt(0);
-
-      if (charCode > 64 && charCode < 91) {
-        // uppercase
-
-        if (charCode + key > 90) {
-          shiftedArray.push(String.fromCharCode(charCode + key - 91 + 65));
-        } else if (charCode + key < 65) {
-          shiftedArray.push(String.fromCharCode(90 - (64 - (charCode + key))));
-        } else {
-          shiftedArray.push(String.fromCharCode(key + charCode));
-        }
-      } else {
-        // lowercase
-
-        if (charCode + key > 122) {
-          shiftedArray.push(String.fromCharCode(charCode + key - 123 + 97));
-        } else if (charCode + key < 97) {
-          shiftedArray.push(String.fromCharCode(122 - (96 - (charCode + key))));
-        } else {
-          shiftedArray.push(String.fromCharCode(key + charCode));
-        }
-      }
+    if (checkAlpha(array[i])) {
+      // Commence cipher operation, with char shift function
+      shiftedArray.push(charShift(key, array[i].charCodeAt(0)));
     } else {
-      //non alpha char
+      //non alpha char, no shift
       shiftedArray.push(array[i]);
     }
   }
-  let cipher = shiftedArray.join("");
-  console.log(shiftedArray);
+  return shiftedArray.join("");
+}
 
-  return cipher;
+function moduloNorm(key) {
+  if (key > 26) {
+    return key % 26;
+  } else {
+    return key;
+  }
+}
+
+function checkAlpha(char) {
+  let pattern = /[a-zA-Z]/;
+  if (pattern.test(char)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function charShift(key, charCode) {
+  if (charCode > 64 && charCode < 91) {
+    // uppercase
+
+    if (charCode + key > 90) {
+      return String.fromCharCode(charCode + key - 91 + 65);
+    } else if (charCode + key < 65) {
+      return String.fromCharCode(90 - (64 - (charCode + key)));
+    } else {
+      return String.fromCharCode(key + charCode);
+    }
+  } else {
+    // lowercase
+
+    if (charCode + key > 122) {
+      return String.fromCharCode(charCode + key - 123 + 97);
+    } else if (charCode + key < 97) {
+      return String.fromCharCode(122 - (96 - (charCode + key)));
+    } else {
+      return String.fromCharCode(key + charCode);
+    }
+  }
 }
 
 // analyzeArray
@@ -121,22 +123,27 @@ function caesarCipher(string, key) {
 // };
 
 function analyzeArray(array) {
-  // average of array
-  // min of array/
-  // max of array
-  // length of array
-
-  array.length;
-
   return {
-    average:
-      array.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue;
-      }, 0) / array.length,
-    min: Math.min(...array),
-    max: Math.max(...array),
+    average: average(array),
+    min: min(array),
+    max: max(array),
     length: array.length,
   };
+}
+
+function average(array) {
+  return (
+    array.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0) / array.length
+  );
+}
+function min(array) {
+  return Math.min(...array);
+}
+
+function max(array) {
+  return Math.max(...array);
 }
 
 export { sum, capitalize, reverse, calculator, caesarCipher, analyzeArray };
